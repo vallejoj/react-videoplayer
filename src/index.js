@@ -5,7 +5,8 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 //components
 import SearchBar from './components/search_bar'
-
+import VideoList from './components/video_list'
+import VideoDetail from './components/video_detail'
 const API_KEY = 'AIzaSyAVqwyl-0bSFR9WSlpDq2obcGPajJIcLXw';
 
 
@@ -16,8 +17,8 @@ const API_KEY = 'AIzaSyAVqwyl-0bSFR9WSlpDq2obcGPajJIcLXw';
 
         this.state={ videos: []};
 
-        YTSearch({key: API_KEY, term: 'pole dancer'}, function(data){
-        this.setState({videos: data})
+        YTSearch({key: API_KEY, term: 'Sergia Loiuse Anderson'},(videos)=>{
+        this.setState({videos})
         });
 
       }
@@ -26,6 +27,8 @@ const API_KEY = 'AIzaSyAVqwyl-0bSFR9WSlpDq2obcGPajJIcLXw';
         return  (
         <div>
         <SearchBar/>
+        <VideoDetail video={this.state.videos[0]}/>
+        <VideoList videos={this.state.videos}/>
       </div>
     );
   }
